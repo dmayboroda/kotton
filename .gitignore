@@ -4,5 +4,6 @@ build/
 *.ipr
 *.iws
 *.log
+.DS_Store
 .gradle/
 classes/
