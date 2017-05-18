@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 buildscript {
     repositories {
         mavenCentral()
@@ -6,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M1")
     }
 }
 
@@ -32,18 +34,29 @@ repositories {
     maven { setUrl("https://repo.spring.io/snapshot") }
 }
 
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
-    compile("org.springframework.boot:spring-boot-starter-webflux")
-    compile("io.projectreactor:reactor-kotlin-extensions:1.0.0.M2")
 
+    compile("org.springframework.boot:spring-boot-starter-webflux") {
+        exclude(module = "hibernate-validator")
+    }
+    compileOnly("org.springframework:spring-context-indexer")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+    runtime("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile("com.fasterxml.jackson.module:jackson-module-kotlin")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    compile("io.projectreactor:reactor-kotlin-extensions:1.0.0.M2")
 
-    compileOnly("org.springframework:spring-context-indexer")
-
-    testCompile("io.projectreactor.addons:reactor-test")
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("io.projectreactor.addons:reactor-test")
+
 
 }
