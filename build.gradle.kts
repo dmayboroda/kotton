@@ -4,7 +4,6 @@ buildscript {
     repositories {
         mavenCentral()
         maven { setUrl("https://repo.spring.io/milestone") }
-        maven { setUrl("https://repo.spring.io/snapshot") }
     }
 
     dependencies {
@@ -40,6 +39,9 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+noArg {
+    annotation("org.springframework.data.mongodb.core.mapping.Document")
+}
 
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8")
