@@ -58,6 +58,4 @@ dependencies {
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("io.projectreactor.addons:reactor-test")
-
-
 }
