@@ -12,11 +12,11 @@ buildscript {
 }
 
 plugins {
-    val kotlinVersion = "1.1.2-2"
+    val kotlinVersion = "1.1.2-5"
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.noarg") version kotlinVersion
-    id("io.spring.dependency-management") version "1.0.2.RELEASE"
+    id("io.spring.dependency-management") version "1.0.3.RELEASE"
 }
 
 apply {
@@ -30,7 +30,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     maven { setUrl("https://repo.spring.io/milestone") }
-    maven { setUrl("https://repo.spring.io/snapshot") }
 }
 
 tasks.withType<KotlinCompile> {
