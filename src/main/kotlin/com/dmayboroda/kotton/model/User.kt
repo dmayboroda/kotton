@@ -4,13 +4,13 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 /**
+ * Track of permissions, only admin can add/edit content.
  * Created by dmaiboroda on 6/17/17.
  */
 @Document
 data class User(
         @Id val id: String? = null,
-        val firstname: String,
-        val lastname: String,
+        val username: String,
         val email: String
 )
 
