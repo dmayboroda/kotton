@@ -4,19 +4,20 @@ buildscript {
     repositories {
         mavenCentral()
         maven { setUrl("https://repo.spring.io/milestone") }
+        maven { setUrl("https://repo.spring.io/snapshot") }
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M1")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
     }
 }
 
 plugins {
-    val kotlinVersion = "1.1.2-2"
+    val kotlinVersion = "1.1.4-3"
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.noarg") version kotlinVersion
-    id("io.spring.dependency-management") version "1.0.2.RELEASE"
+    id("io.spring.dependency-management") version "1.0.3.RELEASE"
 }
 
 apply {
@@ -36,6 +37,7 @@ repositories {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = listOf("-Xjsr305-annotations=enable")
     }
 }
 
@@ -56,6 +58,8 @@ dependencies {
     compile("com.fasterxml.jackson.module:jackson-module-kotlin")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     compile("io.projectreactor:reactor-kotlin-extensions:1.0.0.M2")
+
+    compile("org.asciidoctor:asciidoctorj:1.5.4")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("io.projectreactor.addons:reactor-test")
